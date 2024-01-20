@@ -1,0 +1,4 @@
+[lint]
+ignore = ["F405","F403","E741","F401","E731", "E402"]
+fixable = ["ALL"]
+unfixable = []
