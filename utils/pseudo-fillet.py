@@ -16,6 +16,7 @@ def pseudo_fillet(v: Vertex, radius: float, dir_x=-1, dir_y=-1):
             arc = RadiusArc(
                 vec + (radius * dir_x, 0), vec + (0, radius * dir_y), radius=radius
             )
+
             Polyline(arc @ 0, vec, arc @ 1)
             show_object(arc)
         make_face()
@@ -26,5 +27,17 @@ with BuildSketch() as sk:
     Rectangle(10, 10)
     v = sk.vertices().group_by(Axis.X)[-1].sort_by(Axis.Y)[-1]
     add(sk.faces()[0].fillet_2d(vertices=[v], radius=1))
-    # add(pseudo_fillet(v, 10, -1, -1), mode=Mode.SUBTRACT)
+    add(pseudo_fillet(v, 10, -1, -1), mode=Mode.SUBTRACT)
 show_object(sk)
+
+# %%
+
+# Create a sample collection
+users = {"Hans": "active", "Éléonore": "inactive", "景太郎": "active"}
+print(dict(users))
+
+# Strategy:  Iterate over a copy
+for user, status in users.items():
+    print(user, status)
+    # if status == "inactive":
+    # del users[user]
